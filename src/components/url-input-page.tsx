@@ -40,7 +40,7 @@ export function UrlInputPage({ onBack, onAnalyze }: UrlInputPageProps) {
     setIsValidating(true)
 
     // Simulate validation delay
-    await postReel(url);
+    // await postReel(url);
 
     if (!validateInstagramUrl(url)) {
       setValidationError("Please enter a valid Instagram reel URL (e.g., https://instagram.com/reel/ABC123)")

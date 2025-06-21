@@ -570,11 +570,12 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
         </Card>
 
         <Tabs defaultValue="personas" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4">
+          <TabsList className="flex w-full space-x-4">
             <TabsTrigger value="personas">Fan Personas</TabsTrigger>
+            <TabsTrigger value="behavioural">Behavioural</TabsTrigger>
             <TabsTrigger value="engagement">Engagement</TabsTrigger>
             <TabsTrigger value="sentiment">Sentiment</TabsTrigger>
-            <TabsTrigger value="recommendations">Recommendations</TabsTrigger>
+            <TabsTrigger value="language">Language</TabsTrigger>
           </TabsList>
 
           <TabsContent value="personas" className="space-y-6">
@@ -642,6 +643,10 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
                 </Card>
               ))}
             </div>
+          </TabsContent>
+
+          <TabsContent value="behavioural" className="space-y-6">
+            <p> BEHAVIOURAL </p>
           </TabsContent>
 
           <TabsContent value="engagement" className="space-y-6">
@@ -756,7 +761,7 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
             </div>
           </TabsContent>
 
-          <TabsContent value="recommendations" className="space-y-6">
+          <TabsContent value="language" className="space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <Card>
                 <CardHeader>
