@@ -21,7 +21,6 @@ const postReel = async (reelURL) => {
     }
 }
 
-export { postReel };
 
 const getAnalytics = async () => {
     try {
@@ -42,3 +41,5 @@ const getAnalytics = async () => {
         throw error;
     }
 }
+
+export { postReel, getAnalytics };
