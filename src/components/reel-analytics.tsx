@@ -1,0 +1,935 @@
+"use client"
+
+import { useState } from "react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Progress } from "@/components/ui/progress"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import {
+  Radar,
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
+  ResponsiveContainer,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  PieChart,
+  Pie,
+  Cell,
+  Area,
+  AreaChart,
+} from "recharts"
+import {
+  ArrowLeft,
+  Heart,
+  MessageSquare,
+  Share2,
+  Eye,
+  Clock,
+  Target,
+  Download,
+  Copy,
+  User,
+  Settings,
+  LogOut,
+  Instagram,
+  Globe,
+  Zap,
+  Sparkles,
+  ThumbsUp,
+  BookOpen,
+  Music,
+  Camera,
+  Smartphone,
+} from "lucide-react"
+
+interface ReelAnalyticsProps {
+  onBack: () => void
+  reelUrl: string
+}
+
+export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
+  const [selectedPersona, setSelectedPersona] = useState<any>(null)
+
+  // Mock reel data
+  const reelData = {
+    url: reelUrl,
+    title: "Amazing sunset timelapse 🌅",
+    views: 45672,
+    likes: 3421,
+    comments: 287,
+    shares: 156,
+    saves: 892,
+    engagementRate: 8.7,
+    postedDate: "2024-01-15",
+    duration: "00:30",
+  }
+
+  // Mock persona data
+  const personaData = [
+    {
+      id: 1,
+      name: "Nature Enthusiast",
+      avatar: "🌿",
+      color: "#22c55e",
+      percentage: 35,
+      count: 15985,
+      traits: {
+        openness: 88,
+        conscientiousness: 75,
+        extraversion: 65,
+        agreeableness: 92,
+        neuroticism: 28,
+      },
+      keywords: ["nature", "peaceful", "beautiful", "sunset", "amazing", "love", "perfect"],
+      interests: [
+        { name: "Nature Photography", icon: Camera },
+        { name: "Travel", icon: Globe },
+        { name: "Mindfulness", icon: Heart },
+      ],
+      demographics: {
+        ageGroups: [
+          { age: "18-24", percentage: 25 },
+          { age: "25-34", percentage: 45 },
+          { age: "35-44", percentage: 20 },
+          { age: "45+", percentage: 10 },
+        ],
+        topLocations: ["California", "New York", "Florida", "Texas", "Colorado"],
+      },
+      engagement: {
+        avgLikes: 156,
+        avgComments: 23,
+        avgShares: 8,
+        peakHours: [7, 8, 18, 19, 20],
+        preferredContent: ["Videos", "Stories", "Carousels"],
+      },
+    },
+    {
+      id: 2,
+      name: "Creative Explorer",
+      avatar: "🎨",
+      color: "#a855f7",
+      percentage: 28,
+      count: 12788,
+      traits: {
+        openness: 95,
+        conscientiousness: 62,
+        extraversion: 78,
+        agreeableness: 85,
+        neuroticism: 45,
+      },
+      keywords: ["creative", "artistic", "inspiration", "colors", "aesthetic", "mood", "vibes"],
+      interests: [
+        { name: "Art & Design", icon: Sparkles },
+        { name: "Photography", icon: Camera },
+        { name: "Music", icon: Music },
+      ],
+      demographics: {
+        ageGroups: [
+          { age: "18-24", percentage: 40 },
+          { age: "25-34", percentage: 35 },
+          { age: "35-44", percentage: 20 },
+          { age: "45+", percentage: 5 },
+        ],
+        topLocations: ["Los Angeles", "New York", "San Francisco", "Austin", "Portland"],
+      },
+      engagement: {
+        avgLikes: 189,
+        avgComments: 31,
+        avgShares: 12,
+        peakHours: [11, 12, 16, 17, 21],
+        preferredContent: ["Stories", "Reels", "IGTV"],
+      },
+    },
+    {
+      id: 3,
+      name: "Tech Savvy",
+      avatar: "📱",
+      color: "#3b82f6",
+      percentage: 22,
+      count: 10048,
+      traits: {
+        openness: 91,
+        conscientiousness: 82,
+        extraversion: 73,
+        agreeableness: 68,
+        neuroticism: 35,
+      },
+      keywords: ["tech", "quality", "professional", "gear", "camera", "settings", "editing"],
+      interests: [
+        { name: "Technology", icon: Smartphone },
+        { name: "Photography Gear", icon: Camera },
+        { name: "Video Editing", icon: BookOpen },
+      ],
+      demographics: {
+        ageGroups: [
+          { age: "18-24", percentage: 30 },
+          { age: "25-34", percentage: 50 },
+          { age: "35-44", percentage: 15 },
+          { age: "45+", percentage: 5 },
+        ],
+        topLocations: ["San Francisco", "Seattle", "Austin", "Boston", "Denver"],
+      },
+      engagement: {
+        avgLikes: 142,
+        avgComments: 28,
+        avgShares: 15,
+        peakHours: [9, 10, 14, 15, 22],
+        preferredContent: ["Reels", "IGTV", "Carousels"],
+      },
+    },
+    {
+      id: 4,
+      name: "Lifestyle Seeker",
+      avatar: "✨",
+      color: "#f59e0b",
+      percentage: 15,
+      count: 6851,
+      traits: {
+        openness: 76,
+        conscientiousness: 68,
+        extraversion: 89,
+        agreeableness: 81,
+        neuroticism: 42,
+      },
+      keywords: ["lifestyle", "goals", "motivation", "inspiration", "dream", "wanderlust", "blessed"],
+      interests: [
+        { name: "Lifestyle", icon: Heart },
+        { name: "Travel", icon: Globe },
+        { name: "Wellness", icon: Sparkles },
+      ],
+      demographics: {
+        ageGroups: [
+          { age: "18-24", percentage: 45 },
+          { age: "25-34", percentage: 35 },
+          { age: "35-44", percentage: 15 },
+          { age: "45+", percentage: 5 },
+        ],
+        topLocations: ["Miami", "Los Angeles", "New York", "Las Vegas", "San Diego"],
+      },
+      engagement: {
+        avgLikes: 203,
+        avgComments: 35,
+        avgShares: 18,
+        peakHours: [12, 13, 19, 20, 21],
+        preferredContent: ["Stories", "Reels", "Posts"],
+      },
+    },
+  ]
+
+  const engagementOverTime = [
+    { time: "00:00", engagement: 100 },
+    { time: "00:05", engagement: 85 },
+    { time: "00:10", engagement: 92 },
+    { time: "00:15", engagement: 78 },
+    { time: "00:20", engagement: 88 },
+    { time: "00:25", engagement: 95 },
+    { time: "00:30", engagement: 82 },
+  ]
+
+  const sentimentData = [
+    { name: "Positive", value: 78, color: "#22c55e" },
+    { name: "Neutral", value: 18, color: "#6b7280" },
+    { name: "Negative", value: 4, color: "#ef4444" },
+  ]
+
+  const radarData = (traits: any) => [
+    { subject: "Openness", A: traits.openness, fullMark: 100 },
+    { subject: "Conscientiousness", A: traits.conscientiousness, fullMark: 100 },
+    { subject: "Extraversion", A: traits.extraversion, fullMark: 100 },
+    { subject: "Agreeableness", A: traits.agreeableness, fullMark: 100 },
+    { subject: "Neuroticism", A: traits.neuroticism, fullMark: 100 },
+  ]
+
+  const copyInsights = () => {
+    const insights = `Reel Analysis: ${reelData.views.toLocaleString()} views, ${reelData.engagementRate}% engagement rate. Top persona: ${personaData[0].name} (${personaData[0].percentage}% of audience). Key insights: High positive sentiment (78%), peak engagement at 00:25s.`
+    navigator.clipboard.writeText(insights)
+  }
+
+  if (selectedPersona) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        {/* Header */}
+        <header className="bg-white border-b border-gray-200 px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <Button variant="ghost" size="icon" onClick={() => setSelectedPersona(null)}>
+                <ArrowLeft className="h-4 w-4" />
+              </Button>
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">FanPersona</h1>
+                <p className="text-sm text-gray-600">{selectedPersona.name} Deep Dive</p>
+              </div>
+            </div>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <User className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <Settings className="mr-2 h-4 w-4" />
+                  Settings
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  Log out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </header>
+
+        <div className="p-6 max-w-7xl mx-auto">
+          {/* Persona Header */}
+          <div className="mb-8">
+            <div className="flex items-center gap-4 mb-4">
+              <div
+                className="w-16 h-16 rounded-full flex items-center justify-center text-2xl"
+                style={{ backgroundColor: `${selectedPersona.color}20` }}
+              >
+                {selectedPersona.avatar}
+              </div>
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900">{selectedPersona.name}</h2>
+                <p className="text-gray-600">
+                  {selectedPersona.count.toLocaleString()} fans • {selectedPersona.percentage}% of your audience
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Personality Traits */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Personality Profile</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ResponsiveContainer width="100%" height={300}>
+                  <RadarChart data={radarData(selectedPersona.traits)}>
+                    <PolarGrid />
+                    <PolarAngleAxis dataKey="subject" />
+                    <PolarRadiusAxis angle={90} domain={[0, 100]} />
+                    <Radar
+                      name="Traits"
+                      dataKey="A"
+                      stroke={selectedPersona.color}
+                      fill={selectedPersona.color}
+                      fillOpacity={0.3}
+                    />
+                  </RadarChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card>
+
+            {/* Demographics */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Demographics</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-6">
+                  <div>
+                    <h4 className="font-medium mb-3">Age Distribution</h4>
+                    <div className="space-y-2">
+                      {selectedPersona.demographics.ageGroups.map((group: any, index: number) => (
+                        <div key={index} className="flex items-center justify-between">
+                          <span className="text-sm">{group.age}</span>
+                          <div className="flex items-center gap-2 flex-1 ml-4">
+                            <Progress value={group.percentage} className="flex-1" />
+                            <span className="text-sm font-medium w-10">{group.percentage}%</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="font-medium mb-3">Top Locations</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedPersona.demographics.topLocations.map((location: string, index: number) => (
+                        <Badge key={index} variant="secondary">
+                          {location}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Interests */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Top Interests</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {selectedPersona.interests.map((interest: any, index: number) => (
+                    <div key={index} className="flex items-center gap-3">
+                      <div
+                        className="w-10 h-10 rounded-lg flex items-center justify-center"
+                        style={{ backgroundColor: `${selectedPersona.color}20` }}
+                      >
+                        <interest.icon className="h-5 w-5" style={{ color: selectedPersona.color }} />
+                      </div>
+                      <span className="font-medium">{interest.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Engagement Patterns */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Engagement Patterns</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="grid grid-cols-3 gap-4 text-center">
+                    <div>
+                      <div className="text-2xl font-bold" style={{ color: selectedPersona.color }}>
+                        {selectedPersona.engagement.avgLikes}
+                      </div>
+                      <div className="text-sm text-gray-600">Avg Likes</div>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold" style={{ color: selectedPersona.color }}>
+                        {selectedPersona.engagement.avgComments}
+                      </div>
+                      <div className="text-sm text-gray-600">Avg Comments</div>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold" style={{ color: selectedPersona.color }}>
+                        {selectedPersona.engagement.avgShares}
+                      </div>
+                      <div className="text-sm text-gray-600">Avg Shares</div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="font-medium mb-2">Peak Activity Hours</h4>
+                    <div className="flex gap-1">
+                      {Array.from({ length: 24 }, (_, i) => (
+                        <div
+                          key={i}
+                          className={`h-8 flex-1 rounded ${
+                            selectedPersona.engagement.peakHours.includes(i) ? "opacity-100" : "opacity-20"
+                          }`}
+                          style={{ backgroundColor: selectedPersona.color }}
+                          title={`${i}:00`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Keywords */}
+          <Card className="mt-6">
+            <CardHeader>
+              <CardTitle>Common Keywords & Phrases</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-wrap gap-2">
+                {selectedPersona.keywords.map((keyword: string, index: number) => (
+                  <Badge
+                    key={index}
+                    variant="secondary"
+                    className="text-sm"
+                    style={{
+                      backgroundColor: `${selectedPersona.color}20`,
+                      color: selectedPersona.color,
+                      fontSize: `${Math.random() * 0.3 + 0.9}rem`,
+                    }}
+                  >
+                    {keyword}
+                  </Badge>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <header className="bg-white border-b border-gray-200 px-6 py-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <Button variant="ghost" size="icon" onClick={onBack}>
+              <ArrowLeft className="h-4 w-4" />
+            </Button>
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900">FanPersona</h1>
+              <p className="text-sm text-gray-600">Reel Analytics Report</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <Button variant="outline" onClick={copyInsights}>
+              <Copy className="mr-2 h-4 w-4" />
+              Copy Report
+            </Button>
+            <Button variant="outline">
+              <Download className="mr-2 h-4 w-4" />
+              Export PDF
+            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <User className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <Settings className="mr-2 h-4 w-4" />
+                  Settings
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  Log out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </div>
+      </header>
+
+      <div className="p-6 max-w-7xl mx-auto">
+        {/* Reel Overview */}
+        <Card className="mb-8">
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg flex items-center justify-center">
+                  <Instagram className="h-6 w-6 text-white" />
+                </div>
+                <div>
+                  <CardTitle className="text-xl">{reelData.title}</CardTitle>
+                  <p className="text-gray-600">
+                    Posted on {reelData.postedDate} • {reelData.duration}
+                  </p>
+                </div>
+              </div>
+              <Badge className="bg-green-100 text-green-700">{reelData.engagementRate}% Engagement Rate</Badge>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+              <div className="text-center">
+                <Eye className="h-6 w-6 text-blue-500 mx-auto mb-2" />
+                <div className="text-2xl font-bold text-gray-900">{reelData.views.toLocaleString()}</div>
+                <div className="text-sm text-gray-600">Views</div>
+              </div>
+              <div className="text-center">
+                <Heart className="h-6 w-6 text-red-500 mx-auto mb-2" />
+                <div className="text-2xl font-bold text-gray-900">{reelData.likes.toLocaleString()}</div>
+                <div className="text-sm text-gray-600">Likes</div>
+              </div>
+              <div className="text-center">
+                <MessageSquare className="h-6 w-6 text-green-500 mx-auto mb-2" />
+                <div className="text-2xl font-bold text-gray-900">{reelData.comments}</div>
+                <div className="text-sm text-gray-600">Comments</div>
+              </div>
+              <div className="text-center">
+                <Share2 className="h-6 w-6 text-purple-500 mx-auto mb-2" />
+                <div className="text-2xl font-bold text-gray-900">{reelData.shares}</div>
+                <div className="text-sm text-gray-600">Shares</div>
+              </div>
+              <div className="text-center">
+                <BookOpen className="h-6 w-6 text-orange-500 mx-auto mb-2" />
+                <div className="text-2xl font-bold text-gray-900">{reelData.saves}</div>
+                <div className="text-sm text-gray-600">Saves</div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Tabs defaultValue="personas" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-4">
+            <TabsTrigger value="personas">Fan Personas</TabsTrigger>
+            <TabsTrigger value="engagement">Engagement</TabsTrigger>
+            <TabsTrigger value="sentiment">Sentiment</TabsTrigger>
+            <TabsTrigger value="recommendations">Recommendations</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="personas" className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {personaData.map((persona) => (
+                <Card
+                  key={persona.id}
+                  className="cursor-pointer hover:shadow-lg transition-shadow duration-200"
+                  onClick={() => setSelectedPersona(persona)}
+                >
+                  <CardHeader className="pb-3">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div
+                        className="w-12 h-12 rounded-full flex items-center justify-center text-xl"
+                        style={{ backgroundColor: `${persona.color}20` }}
+                      >
+                        {persona.avatar}
+                      </div>
+                      <div>
+                        <CardTitle className="text-lg">{persona.name}</CardTitle>
+                        <p className="text-sm text-gray-600">{persona.percentage}% of audience</p>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold" style={{ color: persona.color }}>
+                        {persona.count.toLocaleString()}
+                      </div>
+                      <div className="text-sm text-gray-600">Fans</div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <h4 className="text-sm font-medium text-gray-700">Top Traits</h4>
+                      {Object.entries(persona.traits)
+                        .sort(([, a], [, b]) => (b as number) - (a as number))
+                        .slice(0, 3)
+                        .map(([trait, value]) => (
+                          <div key={trait} className="flex justify-between text-xs">
+                            <span className="capitalize">{trait}</span>
+                            <span>{value}%</span>
+                          </div>
+                        ))}
+                    </div>
+
+                    <div>
+                      <h4 className="text-sm font-medium text-gray-700 mb-2">Keywords</h4>
+                      <div className="flex flex-wrap gap-1">
+                        {persona.keywords.slice(0, 3).map((keyword, index) => (
+                          <Badge
+                            key={index}
+                            variant="secondary"
+                            className="text-xs"
+                            style={{
+                              backgroundColor: `${persona.color}20`,
+                              color: persona.color,
+                            }}
+                          >
+                            {keyword}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="engagement" className="space-y-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Engagement Over Time</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ResponsiveContainer width="100%" height={300}>
+                    <AreaChart data={engagementOverTime}>
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="time" />
+                      <YAxis />
+                      <Tooltip />
+                      <Area type="monotone" dataKey="engagement" stroke="#8884d8" fill="#8884d8" fillOpacity={0.3} />
+                    </AreaChart>
+                  </ResponsiveContainer>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle>Peak Engagement Moments</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+                      <div>
+                        <div className="font-medium">00:25s - Sunset Reveal</div>
+                        <div className="text-sm text-gray-600">Highest engagement spike</div>
+                      </div>
+                      <div className="text-green-600 font-bold">95%</div>
+                    </div>
+                    <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
+                      <div>
+                        <div className="font-medium">00:10s - Color Transition</div>
+                        <div className="text-sm text-gray-600">Strong visual impact</div>
+                      </div>
+                      <div className="text-blue-600 font-bold">92%</div>
+                    </div>
+                    <div className="flex items-center justify-between p-3 bg-purple-50 rounded-lg">
+                      <div>
+                        <div className="font-medium">00:20s - Music Peak</div>
+                        <div className="text-sm text-gray-600">Audio-visual sync</div>
+                      </div>
+                      <div className="text-purple-600 font-bold">88%</div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="sentiment" className="space-y-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Overall Sentiment</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ResponsiveContainer width="100%" height={300}>
+                    <PieChart>
+                      <Pie
+                        data={sentimentData}
+                        cx="50%"
+                        cy="50%"
+                        outerRadius={100}
+                        dataKey="value"
+                        label={({ name, value }) => `${name}: ${value}%`}
+                      >
+                        {sentimentData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.color} />
+                        ))}
+                      </Pie>
+                      <Tooltip />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle>Top Positive Comments</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="p-3 bg-green-50 rounded-lg">
+                      <div className="flex items-center gap-2 mb-2">
+                        <ThumbsUp className="h-4 w-4 text-green-600" />
+                        <span className="font-medium text-green-800">@naturelover_23</span>
+                      </div>
+                      <p className="text-sm">"This is absolutely breathtaking! The colors are incredible 😍"</p>
+                    </div>
+                    <div className="p-3 bg-green-50 rounded-lg">
+                      <div className="flex items-center gap-2 mb-2">
+                        <ThumbsUp className="h-4 w-4 text-green-600" />
+                        <span className="font-medium text-green-800">@sunset_chaser</span>
+                      </div>
+                      <p className="text-sm">"Perfect timing! This made my day ✨"</p>
+                    </div>
+                    <div className="p-3 bg-green-50 rounded-lg">
+                      <div className="flex items-center gap-2 mb-2">
+                        <ThumbsUp className="h-4 w-4 text-green-600" />
+                        <span className="font-medium text-green-800">@photo_enthusiast</span>
+                      </div>
+                      <p className="text-sm">"Amazing capture! What camera settings did you use?"</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="recommendations" className="space-y-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Zap className="h-5 w-5 text-yellow-500" />
+                    Content Recommendations
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="p-4 border border-green-200 rounded-lg bg-green-50">
+                      <h4 className="font-medium text-green-800 mb-2">For Nature Enthusiasts (35%)</h4>
+                      <ul className="text-sm text-green-700 space-y-1">
+                        <li>• Post more golden hour content</li>
+                        <li>• Share behind-the-scenes of your photography process</li>
+                        <li>• Create time-lapse series of different natural phenomena</li>
+                      </ul>
+                    </div>
+                    <div className="p-4 border border-purple-200 rounded-lg bg-purple-50">
+                      <h4 className="font-medium text-purple-800 mb-2">For Creative Explorers (28%)</h4>
+                      <ul className="text-sm text-purple-700 space-y-1">
+                        <li>• Experiment with color grading tutorials</li>
+                        <li>• Share your editing workflow</li>
+                        <li>• Create artistic interpretations of landscapes</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Clock className="h-5 w-5 text-blue-500" />
+                    Optimal Posting Strategy
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-medium mb-2">Best Times to Post</h4>
+                      <div className="grid grid-cols-2 gap-2">
+                        <div className="p-2 bg-blue-50 rounded text-center">
+                          <div className="font-medium text-blue-800">7-8 AM</div>
+                          <div className="text-xs text-blue-600">Morning commute</div>
+                        </div>
+                        <div className="p-2 bg-blue-50 rounded text-center">
+                          <div className="font-medium text-blue-800">6-8 PM</div>
+                          <div className="text-xs text-blue-600">Evening wind-down</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 className="font-medium mb-2">Content Mix Recommendation</h4>
+                      <div className="space-y-2">
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm">Nature Timelapses</span>
+                          <span className="text-sm font-medium">40%</span>
+                        </div>
+                        <Progress value={40} className="h-2" />
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm">Behind-the-scenes</span>
+                          <span className="text-sm font-medium">30%</span>
+                        </div>
+                        <Progress value={30} className="h-2" />
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm">Educational Content</span>
+                          <span className="text-sm font-medium">20%</span>
+                        </div>
+                        <Progress value={20} className="h-2" />
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm">Interactive Posts</span>
+                          <span className="text-sm font-medium">10%</span>
+                        </div>
+                        <Progress value={10} className="h-2" />
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="lg:col-span-2">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Target className="h-5 w-5 text-red-500" />
+                    Actionable Next Steps
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <h4 className="font-medium mb-3">Immediate Actions (This Week)</h4>
+                      <div className="space-y-3">
+                        <div className="flex items-start gap-3">
+                          <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span className="text-xs font-medium text-green-600">1</span>
+                          </div>
+                          <div>
+                            <div className="font-medium">Create a sunset photography series</div>
+                            <div className="text-sm text-gray-600">
+                              Your Nature Enthusiasts love golden hour content
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span className="text-xs font-medium text-green-600">2</span>
+                          </div>
+                          <div>
+                            <div className="font-medium">Share your editing process</div>
+                            <div className="text-sm text-gray-600">
+                              Creative Explorers want to learn your techniques
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span className="text-xs font-medium text-green-600">3</span>
+                          </div>
+                          <div>
+                            <div className="font-medium">Post during peak hours (7-8 AM, 6-8 PM)</div>
+                            <div className="text-sm text-gray-600">
+                              Maximize reach when your audience is most active
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 className="font-medium mb-3">Long-term Strategy (Next Month)</h4>
+                      <div className="space-y-3">
+                        <div className="flex items-start gap-3">
+                          <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span className="text-xs font-medium text-blue-600">1</span>
+                          </div>
+                          <div>
+                            <div className="font-medium">Develop persona-specific content pillars</div>
+                            <div className="text-sm text-gray-600">
+                              Create targeted content for each audience segment
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span className="text-xs font-medium text-blue-600">2</span>
+                          </div>
+                          <div>
+                            <div className="font-medium">Launch interactive Q&A series</div>
+                            <div className="text-sm text-gray-600">
+                              Engage Tech Savvy audience with technical discussions
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span className="text-xs font-medium text-blue-600">3</span>
+                          </div>
+                          <div>
+                            <div className="font-medium">Track and analyze performance</div>
+                            <div className="text-sm text-gray-600">Monitor how persona-targeted content performs</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+        </Tabs>
+      </div>
+    </div>
+  )
+}
