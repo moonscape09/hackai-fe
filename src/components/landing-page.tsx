@@ -21,12 +21,14 @@ import {
   Sparkles,
 } from "lucide-react"
 import { useEffect } from "react";
+import handleGoToGrid from "@/app/page"
 
 interface LandingPageProps {
   onGetStarted: () => void
+  onGoToGrid: () => void
 }
 
-export function LandingPage({ onGetStarted }: LandingPageProps) {
+export function LandingPage({ onGetStarted, onGoToGrid }: LandingPageProps) {
   const features = [
     {
       icon: Brain,
@@ -81,7 +83,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
   useEffect(() => {
     const fetchComments = async () => {
       const data = await getComments(30);
-      console.log(data);
+  
     };
     fetchComments();
   }, []);
@@ -100,13 +102,21 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
                 Insight+
               </span>
             </div>
-            <Button
+            <div className="flex gap-2">
+              <Button
               onClick={onGetStarted}
               className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
-            >
+              >
               Get Started Free
               <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
+              </Button>
+              <Button
+              variant="outline"
+              onClick={onGoToGrid}
+              >
+              Posts
+              </Button>
+            </div>
           </div>
         </div>
       </header>

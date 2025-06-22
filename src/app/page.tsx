@@ -4,8 +4,9 @@ import { useState } from "react"
 import { LandingPage } from "@/components/landing-page"
 import { UrlInputPage } from "@/components/url-input-page"
 import { ReelAnalytics } from "@/components/reel-analytics"
+import Grid from "@/components/grid"
 
-type PageState = "landing" | "url-input" | "analytics" | "form"
+type PageState = "landing" | "url-input" | "analytics" | "grid"
 
 export default function Page() {
   const [currentPage, setCurrentPage] = useState<PageState>("landing")
@@ -18,9 +19,10 @@ export default function Page() {
   const handleBackToLanding = () => {
     setCurrentPage("landing")
   }
-  const handleGoToForm = () => {
-    setCurrentPage("form")
+  const handleGoToGrid = () => {
+    setCurrentPage("grid");
   }
+
 
   const handleAnalyze = (url: string) => {
     setReelUrl(url)
@@ -33,12 +35,14 @@ export default function Page() {
 
   switch (currentPage) {
     case "landing":
-      return <LandingPage onGetStarted={handleGetStarted} />
+      return <LandingPage onGetStarted={handleGetStarted} onGoToGrid={handleGoToGrid}/>
     case "url-input":
       return <UrlInputPage onBack={handleBackToLanding} onAnalyze={handleAnalyze} />
     case "analytics":
       return <ReelAnalytics onBack={handleBackToInput} reelUrl={reelUrl} />
+    case "grid":
+      return <Grid />
     default:
-      return <LandingPage onGetStarted={handleGetStarted} />
+      return <LandingPage onGetStarted={handleGetStarted} onGoToGrid={handleGoToGrid}/>
   }
 }

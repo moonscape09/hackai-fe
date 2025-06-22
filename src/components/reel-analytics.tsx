@@ -253,7 +253,7 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
 
   useEffect(() => {
     const fetchPost = async () => {
-      const data = await getPost(27);
+      const data = await getPost(67);
       setPost(data[0]);
     };
     fetchPost();
@@ -776,13 +776,33 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
             } else {
               gradient = "linear-gradient(90deg, #0ea5e9 0%, #3b82f6 100%)" // cyan to blue (cold)
             }
+            // Sentiment color
+            const sentimentColor =
+              c.sentiment === "positive"
+                ? "bg-green-100 text-green-800"
+                : c.sentiment === "neutral"
+                ? "bg-gray-100 text-gray-800"
+                : "bg-red-100 text-red-800"
+            // Language style color
+            const langColor =
+              c.language_style === "casual"
+                ? "bg-green-100 text-green-800"
+                : c.language_style === "neutral"
+                ? "bg-yellow-100 text-yellow-800"
+                : c.language_style === "playful"
+                ? "bg-purple-100 text-purple-800"
+                : c.language_style === "emoji-heavy"
+                ? "bg-blue-100 text-blue-800"
+                : c.language_style === "internet-slang"
+                ? "bg-red-100 text-red-800"
+                : "bg-gray-100 text-gray-800"
             return (
               <div
                 key={c.id}
-                className="space-y-1 p-4 rounded-lg border border-gray-100 bg-gray-50 shadow-sm break-words"
+                className="space-y-2 p-4 rounded-lg border border-gray-100 bg-gray-50 shadow-sm break-words"
                 style={{ wordBreak: "break-word", overflowWrap: "break-word" }}
               >
-                <div className="flex items-center gap-2 mb-1">
+                <div className="flex flex-wrap items-center gap-2 mb-1">
                   <Badge
                     className="px-2 py-1 rounded-full text-xs font-semibold"
                     style={{
@@ -792,6 +812,18 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
                   >
                     ICP: {c.icp_score}
                   </Badge>
+                  <Badge className="px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                    {c.likes} Likes
+                  </Badge>
+                  <Badge className="px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                    {c.replies} Replies
+                  </Badge>
+                  <Badge className={`px-2 py-1 rounded-full text-xs font-medium ${sentimentColor}`}>
+                    {c.sentiment?.charAt(0).toUpperCase() + c.sentiment?.slice(1)}
+                  </Badge>
+                  <Badge className={`px-2 py-1 rounded-full text-xs font-medium ${langColor}`}>
+                    {c.language_style?.replace("-", " ").replace(/\b\w/g, (l: string) => l.toUpperCase())}
+                  </Badge>
                 </div>
                 <p
                   className="text-sm text-gray-700 italic break-words"
@@ -799,6 +831,11 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
                 >
                   "{c.comment}"
                 </p>
+                {c.icp_reasoning && (
+                  <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3 rounded text-sm text-yellow-900 mt-1">
+                    {c.icp_reasoning}
+                  </div>
+                )}
               </div>
             )
           })}
@@ -826,13 +863,31 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
           } else {
             gradient = "linear-gradient(90deg, #0ea5e9 0%, #3b82f6 100%)"
           }
+          const sentimentColor =
+            c.sentiment === "positive"
+              ? "bg-green-100 text-green-800"
+              : c.sentiment === "neutral"
+              ? "bg-gray-100 text-gray-800"
+              : "bg-red-100 text-red-800"
+          const langColor =
+            c.language_style === "casual"
+              ? "bg-green-100 text-green-800"
+              : c.language_style === "neutral"
+              ? "bg-yellow-100 text-yellow-800"
+              : c.language_style === "playful"
+              ? "bg-purple-100 text-purple-800"
+              : c.language_style === "emoji-heavy"
+              ? "bg-blue-100 text-blue-800"
+              : c.language_style === "internet-slang"
+              ? "bg-red-100 text-red-800"
+              : "bg-gray-100 text-gray-800"
           return (
             <div
               key={c.id}
-              className="space-y-1 p-4 rounded-lg border border-gray-100 bg-gray-50 shadow-sm break-words"
+              className="space-y-2 p-4 rounded-lg border border-gray-100 bg-gray-50 shadow-sm break-words"
               style={{ wordBreak: "break-word", overflowWrap: "break-word" }}
             >
-              <div className="flex items-center gap-2 mb-1">
+              <div className="flex flex-wrap items-center gap-2 mb-1">
                 <Badge
                   className="px-2 py-1 rounded-full text-xs font-semibold"
                   style={{
@@ -842,6 +897,18 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
                 >
                   ICP: {c.icp_score}
                 </Badge>
+                <Badge className="px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                  {c.likes} Likes
+                </Badge>
+                <Badge className="px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                  {c.replies} Replies
+                </Badge>
+                <Badge className={`px-2 py-1 rounded-full text-xs font-medium ${sentimentColor}`}>
+                  {c.sentiment?.charAt(0).toUpperCase() + c.sentiment?.slice(1)}
+                </Badge>
+                <Badge className={`px-2 py-1 rounded-full text-xs font-medium ${langColor}`}>
+                  {c.language_style?.replace("-", " ").replace(/\b\w/g, (l: string) => l.toUpperCase())}
+                </Badge>
               </div>
               <p
                 className="text-sm text-gray-700 italic break-words"
@@ -849,6 +916,11 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
               >
                 "{c.comment}"
               </p>
+              {c.icp_reasoning && (
+                <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3 rounded text-sm text-yellow-900 mt-1">
+                  {c.icp_reasoning}
+                </div>
+              )}
             </div>
           )
         })}
@@ -858,6 +930,92 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
       </CardContent>
     </Card>
   </div>
+)}
+
+{post && (
+   <Card className="shadow-sm">
+      <CardHeader>
+        <CardTitle>All Comments</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        {comments.map((c) => {
+          const icp = c.icp_score ?? 0
+          let gradient = ""
+          if (icp >= 8.0) {
+            gradient = "linear-gradient(90deg, #f59e0b 0%, #ef4444 100%)"
+          } else if (icp >= 6.0) {
+            gradient = "linear-gradient(90deg, #fde68a 0%, #f59e0b 100%)"
+          } else if (icp >= 4.0) {
+            gradient = "linear-gradient(90deg, #3b82f6 0%, #fde68a 100%)"
+          } else {
+            gradient = "linear-gradient(90deg, #0ea5e9 0%, #3b82f6 100%)"
+          }
+          const sentimentColor =
+            c.sentiment === "positive"
+              ? "bg-green-100 text-green-800"
+              : c.sentiment === "neutral"
+              ? "bg-gray-100 text-gray-800"
+              : "bg-red-100 text-red-800"
+          const langColor =
+            c.language_style === "casual"
+              ? "bg-green-100 text-green-800"
+              : c.language_style === "neutral"
+              ? "bg-yellow-100 text-yellow-800"
+              : c.language_style === "playful"
+              ? "bg-purple-100 text-purple-800"
+              : c.language_style === "emoji-heavy"
+              ? "bg-blue-100 text-blue-800"
+              : c.language_style === "internet-slang"
+              ? "bg-red-100 text-red-800"
+              : "bg-gray-100 text-gray-800"
+          return (
+            <div
+              key={c.id}
+              className="space-y-2 p-4 rounded-lg border border-gray-100 bg-gray-50 shadow-sm break-words"
+              style={{ wordBreak: "break-word", overflowWrap: "break-word" }}
+            >
+              <div className="flex flex-wrap items-center gap-2 mb-1">
+                <Badge
+                  className="px-2 py-1 rounded-full text-xs font-semibold"
+                  style={{
+                    background: gradient,
+                    color: "#fff",
+                  }}
+                >
+                  ICP: {c.icp_score}
+                </Badge>
+                <Badge className="px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                  {c.likes} Likes
+                </Badge>
+                <Badge className="px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                  {c.replies} Replies
+                </Badge>
+                <Badge className={`px-2 py-1 rounded-full text-xs font-medium ${sentimentColor}`}>
+                  {c.sentiment?.charAt(0).toUpperCase() + c.sentiment?.slice(1)}
+                </Badge>
+                <Badge className={`px-2 py-1 rounded-full text-xs font-medium ${langColor}`}>
+                  {c.language_style?.replace("-", " ").replace(/\b\w/g, (l: string) => l.toUpperCase())}
+                </Badge>
+              </div>
+              <p
+                className="text-sm text-gray-700 italic break-words"
+                style={{ wordBreak: "break-word", overflowWrap: "break-word" }}
+              >
+                "{c.comment}"
+              </p>
+              {c.icp_reasoning && (
+                <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3 rounded text-sm text-yellow-900 mt-1">
+                  {c.icp_reasoning}
+                </div>
+              )}
+            </div>
+          )
+        })}
+        {comments.length === 0 && (
+          <p className="text-sm text-gray-500">No comments available.</p>
+        )}
+      </CardContent>
+    </Card>
 )}
         <Tabs defaultValue="personas" className="space-y-6">
           {/* <TabsList className="flex w-full space-x-4"> */}

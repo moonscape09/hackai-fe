@@ -42,6 +42,26 @@ const getPost = async (postID) => {
     }
 }
 
+const getAllPosts = async () => {
+    try {
+        const response = await fetch(`${API_URL}posts?select=*`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'apikey': API_KEY,
+            },
+        });
+        if (!response.ok) {
+            throw new Error(`Error: ${response.statusText}`);
+        }
+    
+        return await response.json();
+    } catch (error) {
+        console.error('Failed to get all posts:', error);
+        throw error;
+    }
+}
+
 const getComments = async (postID) => {
     try {
         const response = await fetch(`${API_URL}comments?select=*&post_id=eq.${postID}&order=icp_score.desc`, {
@@ -81,4 +101,4 @@ const getAnalytics = async () => {
     }
 }
 
-export { postReel, getAnalytics, getComments, getPost };
+export { postReel, getAnalytics, getComments, getPost, getAllPosts };
