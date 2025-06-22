@@ -8,6 +8,7 @@ import {
   BarChart3,
   Target,
   Instagram,
+  Linkedin,
   TrendingUp,
   MessageSquare,
   Eye,
@@ -58,8 +59,8 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
   const steps = [
     {
       step: "1",
-      title: "Share Your Instagram Reel",
-      description: "Simply paste your Instagram reel URL to get started",
+      title: "Share Your Instagram Reel/LinkedIn Post",
+      description: "Simply paste your Instagram reel or LinkedIn post URL to get started",
       icon: Instagram,
     },
     {
@@ -87,7 +88,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
                 <Users className="h-5 w-5 text-white" />
               </div>
               <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-                FanPersona
+                Insight+
               </span>
             </div>
             <Button
@@ -118,7 +119,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
           </h1>
 
           <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Transform your Instagram content strategy with deep audience insights. Discover who your fans really are,
+            Transform your Instagram or Linkedin content strategy with deep audience insights. Discover who your fans really are,
             what drives their engagement, and how to create content that converts.
           </p>
 
@@ -162,10 +163,17 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
           <div className="grid md:grid-cols-3 gap-8">
             {steps.map((step, index) => (
               <div key={index} className="text-center">
-                <div className="relative mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <step.icon className="h-8 w-8 text-white" />
-                  </div>
+                <div className="relative flex justify-center mb-6">
+                    <div className="flex justify-center gap-2 mb-4">
+                    <div className="w-16 h-16 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center">
+                      <step.icon className="h-8 w-8 text-white" />
+                    </div>
+                    {step.step === "1" && (
+                      <div className="w-16 h-16 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center">
+                      <Linkedin className="h-8 w-8 text-white" />
+                      </div>
+                    )}
+                    </div>
                   <div className="absolute -top-2 -right-2 w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
                     <span className="text-sm font-bold text-purple-600">{step.step}</span>
                   </div>

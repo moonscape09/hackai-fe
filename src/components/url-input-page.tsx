@@ -6,8 +6,8 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Progress } from "@/components/ui/progress"
-import { ArrowLeft, Instagram, Link, CheckCircle, AlertCircle, Loader2, Users, Zap, Brain } from "lucide-react"
-import { postReel } from "@/lib/api";
+import { ArrowLeft, Instagram, Linkedin, Link, CheckCircle, AlertCircle, Loader2, Users, Zap, Brain } from "lucide-react"
+// import { postReel } from "@/lib/api";
 
 interface UrlInputPageProps {
   onBack: () => void
@@ -33,7 +33,7 @@ export function UrlInputPage({ onBack, onAnalyze }: UrlInputPageProps) {
 
   const handleAnalyze = async () => {
     if (!url.trim()) {
-      setValidationError("Please enter an Instagram reel URL")
+      setValidationError("Please enter an Instagram Reel/LinkedIn Post URL")
       return
     }
 
@@ -43,7 +43,7 @@ export function UrlInputPage({ onBack, onAnalyze }: UrlInputPageProps) {
     // await postReel(url);
 
     if (!validateInstagramUrl(url)) {
-      setValidationError("Please enter a valid Instagram reel URL (e.g., https://instagram.com/reel/ABC123)")
+      setValidationError("Please enter a valid URL (e.g., https://instagram.com/reel/ABC123)")
       setIsValidating(false)
       return
     }
@@ -68,10 +68,10 @@ export function UrlInputPage({ onBack, onAnalyze }: UrlInputPageProps) {
   }
 
   const analysisSteps = [
-    { step: 1, text: "Fetching reel data...", completed: analysisProgress > 20 },
+    { step: 1, text: "Fetching post data...", completed: analysisProgress > 20 },
     { step: 2, text: "Analyzing comments and engagement...", completed: analysisProgress > 40 },
-    { step: 3, text: "Processing audience behavior...", completed: analysisProgress > 60 },
-    { step: 4, text: "Generating persona insights...", completed: analysisProgress > 80 },
+    { step: 3, text: "Processing audience sentiments...", completed: analysisProgress > 60 },
+    { step: 4, text: "Generating analytics...", completed: analysisProgress > 80 },
     { step: 5, text: "Finalizing report...", completed: analysisProgress >= 100 },
   ]
 
@@ -141,7 +141,7 @@ export function UrlInputPage({ onBack, onAnalyze }: UrlInputPageProps) {
                 <Users className="h-5 w-5 text-white" />
               </div>
               <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-                FanPersona
+                Insight+
               </span>
             </div>
           </div>
@@ -153,12 +153,17 @@ export function UrlInputPage({ onBack, onAnalyze }: UrlInputPageProps) {
           {/* Main Card */}
           <Card className="shadow-xl border-0">
             <CardHeader className="text-center pb-6">
-              <div className="w-16 h-16 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Instagram className="h-8 w-8 text-white" />
-              </div>
-              <CardTitle className="text-3xl font-bold text-gray-900">Share Your Instagram Reel</CardTitle>
+                <div className="flex gap-2 justify-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center mb-4">
+                  <Instagram className="h-8 w-8 text-white" />
+                </div>
+                <div className="w-16 h-16 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center mb-4">
+                  <Linkedin className="h-8 w-8 text-white" />
+                </div>
+                </div>
+              <CardTitle className="text-3xl font-bold text-gray-900">Share Your Instagram Reel/LinkedIn Post</CardTitle>
               <p className="text-lg text-gray-600 mt-2">
-                Paste your Instagram reel URL below to get detailed audience insights and persona analysis
+                Paste your Instagram reel/LinkedIn post URL below to get detailed audience analytics.
               </p>
             </CardHeader>
 
@@ -213,6 +218,10 @@ export function UrlInputPage({ onBack, onAnalyze }: UrlInputPageProps) {
                   <div className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-green-500" />
                     <code className="bg-white px-2 py-1 rounded">https://www.instagram.com/p/DEF456</code>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <code className="bg-white px-2 py-1 rounded">https://www.linkedin.com/posts/ABC123</code>
                   </div>
                 </div>
               </div>

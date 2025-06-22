@@ -44,6 +44,7 @@ import {
   Settings,
   LogOut,
   Instagram,
+  Linkedin,
   Globe,
   Zap,
   Sparkles,
@@ -246,16 +247,15 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
   useEffect(() => {
     const fetchComments = async () => {
       const data = await getComments(7);
-      setComments(data);
+      setComments(data.length);
     };
     fetchComments();
   }, []);
 
   useEffect(() => {
     const fetchPost = async () => {
-      const data = await getPost(19);
+      const data = await getPost(27);
       setPost(data[0]);
-      console.log(data);
     };
     fetchPost();
   }, []);
@@ -278,14 +278,14 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
     // 2) Map that into the shape your chart wants
     const data = entries.map(([key, value]) => ({
       name:
-        key.charAt(0).toUpperCase() + key.slice(1), // "positive" → "Positive"
-      value: value as number / total * 100,
+      key.charAt(0).toUpperCase() + key.slice(1), // "positive" → "Positive"
+      value: Math.round((value as number / total) * 100),
       color:
-        key === "positive"
-          ? "#22c55e"
-          : key === "neutral"
-          ? "#6b7280"
-          : "#ef4444",
+      key === "positive"
+        ? "#22c55e"
+        : key === "neutral"
+        ? "#6b7280"
+        : "#ef4444",
     }));
 
     setSentimentData(data);
@@ -600,7 +600,16 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
 {post && (
   <Card className="mb-8">
     <CardHeader>
-      <CardTitle>Reel & Post Summary</CardTitle>
+      <CardTitle className="text-xl">Reel & Post Summary</CardTitle>
+      <a
+          href={post.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium break-all"
+        >
+          {post.type === "LINKEDIN" ? <Linkedin className="mr-2" size={20} /> : <Instagram className="mr-2" size={20} />}
+          View post
+        </a>
     </CardHeader>
     <CardContent className="space-y-8">
 
@@ -618,7 +627,7 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
         </div>
         <div className="text-center">
           <MessageSquare className="h-6 w-6 text-green-500 mx-auto mb-2" />
-          <div className="text-2xl font-bold">{reelData.comments}</div>
+          <div className="text-2xl font-bold">{comments}</div>
           <div className="text-sm text-gray-600">Comments</div>
         </div>
       </div>

@@ -43,20 +43,17 @@ const getPost = async (postID) => {
 
 const getComments = async (postID) => {
     try {
-        console.log(`${API_URL}posts?select=*&id=eq.${postID}`);
-        const response = await fetch(`${API_URL}posts?select=*&id=eq.${postID}`, {
+        const response = await fetch(`${API_URL}comments?select=*&post_id=eq.${postID}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'apikey': API_KEY,
             },
         });
-
         if (!response.ok) {
             throw new Error(`Error: ${response.statusText}`);
         }
-
-        return await response.json();
+        return response.json();
     } catch (error) {
         console.error('Failed to get comments:', error);
         throw error;
