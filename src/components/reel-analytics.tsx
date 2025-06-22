@@ -346,7 +346,7 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
                 <ArrowLeft className="h-4 w-4" />
               </Button>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">FanPersona</h1>
+                <h1 className="text-2xl font-bold text-gray-900">Insight+</h1>
                 <p className="text-sm text-gray-600">{selectedPersona.name} Deep Dive</p>
               </div>
             </div>
@@ -560,7 +560,7 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
               <ArrowLeft className="h-4 w-4" />
             </Button>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">FanPersona</h1>
+              <h1 className="text-2xl font-bold text-gray-900">Insight+</h1>
               <p className="text-sm text-gray-600">Reel Analytics Report</p>
             </div>
           </div>
