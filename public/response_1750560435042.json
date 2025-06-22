@@ -1,0 +1,672 @@
+{
+  "insights": {
+    "id": "17927896940928701",
+    "creation_time": 1744743167,
+    "has_product_tags": false,
+    "instagram_media_id": "3611489694804433726",
+    "instagram_media_owner_id": "497553533",
+    "instagram_actor": {
+      "instagram_actor_id": "508234435929694",
+      "id": "17841400525997774"
+    },
+    "inline_insights_node": null,
+    "display_url": "https://scontent-sea1-1.cdninstagram.com/v/t51.71878-15/490195605_1015427763527718_2708270025809097071_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=106&ccb=1-7&_nc_sid=18de74&_nc_ohc=VjjEN6wqIkAQ7kNvwHOgNNI&_nc_oc=AdnpePt24dTJvNhxJ8Hn1SsF9JZBztqYINIvty6dmIQkYsjzOL-ec8fY-qpFR0PVmIU&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-sea1-1.cdninstagram.com&_nc_gid=967BTdroei6qOou6am93_Q&oh=00_AfPkDr7rqVJvTdSKjqvYv0lL8OgP4igQtgqWFdH-TFysbQ&oe=685D4E62",
+    "instagram_media_type": "VIDEO",
+    "image": {
+      "height": 640,
+      "width": 360
+    },
+    "comment_count": 85,
+    "like_count": 1962,
+    "save_count": null,
+    "ad_media": null,
+    "organic_instagram_media_id": "3611489694804433726",
+    "shopping_outbound_click_count": null,
+    "shopping_product_click_count": null,
+    "shopping_product_insights": {
+      "shopping_product_by_tag_click_count": [],
+      "shopping_product_by_tag_outbound_click_count": []
+    }
+  },
+  "comments": [
+    {
+      "pk": "18078923257700351",
+      "username": "ujarhr",
+      "text": "Duck Figma 🙌",
+      "created_at": "2025-05-10T22:51:12+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "17968159976894368",
+      "username": "el_i.ot",
+      "text": "Dev view",
+      "created_at": "2025-05-01T14:41:05+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18066566494947900",
+      "username": "el_i.ot",
+      "text": "Dev tools",
+      "created_at": "2025-05-01T14:40:16+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18065480258300158",
+      "username": "nabil_ahmed4313",
+      "text": "Dave mode",
+      "created_at": "2025-05-01T04:02:13+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18028959743390706",
+      "username": "hussein.in.tech",
+      "text": "Figma hole 😂",
+      "created_at": "2025-04-26T09:16:54+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18042112298200838",
+      "username": "tony_y42",
+      "text": "Did they really register such trademark? The common rule in intellectual property rights is that you can not register a generic trademark - you register a trademark for a certain field(s) of application. And you can not register for a certain field if it's a common term in that field. E.g. you can register Apple as an electronic devices trademark, but you can't register Apple as a juice or any food trademark",
+      "created_at": "2025-04-25T22:24:51+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18083276863643903",
+      "username": "allweathercyclist",
+      "text": "*Laughs in Peleton*",
+      "created_at": "2025-04-25T22:00:47+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18056040581177601",
+      "username": "thatmika",
+      "text": "\"Autism\"",
+      "created_at": "2025-04-22T15:59:45+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18045541259139039",
+      "username": "_arsenink_",
+      "text": "they also own \"schema\" and many more common english words btw",
+      "created_at": "2025-04-21T14:28:26+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18173334943324042",
+      "username": "michaelmahumba",
+      "text": "Code launch",
+      "created_at": "2025-04-21T09:19:59+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18036967028294066",
+      "username": "kyletbarnette",
+      "text": "Code mode 🙌",
+      "created_at": "2025-04-19T19:51:49+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18072664072860638",
+      "username": "lebopetane",
+      "text": "Mode Dev",
+      "created_at": "2025-04-19T11:54:34+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18046910555374279",
+      "username": "lebopetane",
+      "text": "Devv Mode",
+      "created_at": "2025-04-19T11:54:25+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "17976471509834371",
+      "username": "lebopetane",
+      "text": "Developer Mode",
+      "created_at": "2025-04-19T11:52:35+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18057715105934718",
+      "username": "freeubi",
+      "text": "I hate Figma. I loved Sketch, but for some reason all of the designers went to Figma. Figma still doesnt have proper version management, we need to screenshot the features in the stories so we know if it gets changed... HORRIBLE.\nIt fcks up exporst every single day. SVG? Bad. PDF? Bad. Okay, there is this title, can I use dev mode and put into my app? NOPE! \nPlease someone do the next thing.\nI hate Figma.",
+      "created_at": "2025-04-18T07:16:20+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18327089404167888",
+      "username": "bdi962t91hfudo",
+      "text": "Erm, what the figma",
+      "created_at": "2025-04-17T22:56:54+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "17880600927274047",
+      "username": "chaggslifts",
+      "text": "Dev Mod. Screw figma",
+      "created_at": "2025-04-17T15:21:01+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18046423487454428",
+      "username": "banna3sixty",
+      "text": "Ved Mode or God Mode",
+      "created_at": "2025-04-17T10:59:07+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "17943996602848802",
+      "username": "its_ranl",
+      "text": "Non vibe mode?",
+      "created_at": "2025-04-17T05:19:22+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18400186894106087",
+      "username": "sgt13echo",
+      "text": "Sigma view",
+      "created_at": "2025-04-17T05:01:23+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18078078622742975",
+      "username": "_dee_law_",
+      "text": "We see the rubics cube solve bro",
+      "created_at": "2025-04-17T02:00:04+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18040083290223759",
+      "username": "webbyvaris",
+      "text": "Lol hard to create something these days",
+      "created_at": "2025-04-16T22:40:40+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "17973876902839417",
+      "username": "mkochev",
+      "text": "Figma got bought out by Adobe, it’s no wonder that the culture has shifted",
+      "created_at": "2025-04-16T20:51:59+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18060964817035647",
+      "username": "trunkmonkey42",
+      "text": "Get everyone together to add dev mode to their product and joint sue figma for the trademark.",
+      "created_at": "2025-04-16T20:02:18+00:00",
+      "like_count": 2,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18054168080226538",
+      "username": "federico_salvetti",
+      "text": "Figma balls",
+      "created_at": "2025-04-16T18:52:16+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18062263886093743",
+      "username": "kamaltufekcic",
+      "text": "Don't forget, they were bought by adobe a while ago, is this really that surprising?",
+      "created_at": "2025-04-16T17:34:35+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18340988977081179",
+      "username": "jonasmenter",
+      "text": "Yea. They got bought by adobe. 😢",
+      "created_at": "2025-04-16T16:45:10+00:00",
+      "like_count": 2,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18042124619431792",
+      "username": "laluvp",
+      "text": "Ever since they were acquired by Adobe they’ve sucked",
+      "created_at": "2025-04-16T14:47:13+00:00",
+      "like_count": 1,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18324752143165313",
+      "username": "mcaraggiu",
+      "text": "Funny Symbols Mode",
+      "created_at": "2025-04-16T14:34:59+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18499403734052136",
+      "username": "rileyywebb1",
+      "text": "Here’s one. Development mode. They only own the trademark to dev mode. Loop hole",
+      "created_at": "2025-04-16T13:43:27+00:00",
+      "like_count": 1,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18012235478708698",
+      "username": "sammathur4",
+      "text": "indian mode",
+      "created_at": "2025-04-16T13:09:33+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18155730982362662",
+      "username": "faizanbab3r",
+      "text": "Developer Modeloper",
+      "created_at": "2025-04-16T12:58:36+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18062068175487472",
+      "username": "danhatchet",
+      "text": "Call it 'fuck big tech' mode or ' tax billionaires' mode so noone will trademark it. 😂",
+      "created_at": "2025-04-16T12:46:31+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18151037767371329",
+      "username": "theowlishone",
+      "text": "Debug mode?",
+      "created_at": "2025-04-16T11:32:10+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18062044379038357",
+      "username": "a.smoll.frog",
+      "text": "I think the answer to figma should be « go f*ck y*urself »",
+      "created_at": "2025-04-16T11:21:57+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18068684257931807",
+      "username": "joshineveryday",
+      "text": "Villian era is totally a thing - let’s trademark it 😂",
+      "created_at": "2025-04-16T11:15:00+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18024660017676103",
+      "username": "ianbtravels",
+      "text": "This has been used in the game modding industry for like +30 years, to hell with figma",
+      "created_at": "2025-04-16T10:16:22+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "17854985871421565",
+      "username": "yuvalishay6",
+      "text": "Dev view 🤷‍♂️",
+      "created_at": "2025-04-16T08:52:45+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18169969810333428",
+      "username": "jaydeepvalecha",
+      "text": "Root-mode, Nerd-mode, Code-mode, Handson-mode",
+      "created_at": "2025-04-16T04:22:36+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "17943565619851829",
+      "username": "darth.coder",
+      "text": "@figma wtf are you smoking over there? 🤷🏻",
+      "created_at": "2025-04-16T03:48:22+00:00",
+      "like_count": 2,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18049957352061898",
+      "username": "kkclick",
+      "text": "Prog mode",
+      "created_at": "2025-04-16T03:28:11+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18041750288393947",
+      "username": "azmirshah1",
+      "text": "Vibe mode",
+      "created_at": "2025-04-16T02:10:57+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18500379610043159",
+      "username": "masterhacker2019",
+      "text": "Lol",
+      "created_at": "2025-04-16T01:39:04+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18055417969967742",
+      "username": "uhmealya",
+      "text": "Devel mode",
+      "created_at": "2025-04-16T01:36:19+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "17941364801993164",
+      "username": "infil00p",
+      "text": "They caught Adobe brain but didn’t get their Adobe money (except for the $1B penalty)",
+      "created_at": "2025-04-16T01:30:25+00:00",
+      "like_count": 1,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18047779100102341",
+      "username": "sweetxtopher",
+      "text": "I'd be petty and rename it Figmode",
+      "created_at": "2025-04-16T01:09:43+00:00",
+      "like_count": 5,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18118057036457317",
+      "username": "stmaxst",
+      "text": "just a Button labled \"enter the Matrix\"...but a mandatory Matrix animation has to play 😂",
+      "created_at": "2025-04-16T00:50:59+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "17870399424346774",
+      "username": "samantha.flood.710",
+      "text": "Vibe view? 😇🤣",
+      "created_at": "2025-04-16T00:25:00+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18072142843709680",
+      "username": "connor14d",
+      "text": "Are you a speedcuber !!!!",
+      "created_at": "2025-04-15T22:57:01+00:00",
+      "like_count": 1,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "17968987847850916",
+      "username": "elwinandriol",
+      "text": "I very much doubt that this trademark would survive if challenged in court. Not that I'm surprised by the lawfare, is this is Adorable. But that trademark should never have been granted in the first place, not in this day and age, nor up to a decade or two before. Could be fun to analyse the financial records of anyone involved in its approval.",
+      "created_at": "2025-04-15T22:43:48+00:00",
+      "like_count": 26,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18034840418544591",
+      "username": "yhkuzmenko",
+      "text": "They got acquired by Adobe.",
+      "created_at": "2025-04-15T22:15:51+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18369612796120642",
+      "username": "jono0996",
+      "text": "This is fine brothers all again",
+      "created_at": "2025-04-15T22:05:52+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18048548465378770",
+      "username": "buchert.mcbuchface",
+      "text": "Mev dode.",
+      "created_at": "2025-04-15T22:05:42+00:00",
+      "like_count": 25,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18039560750625649",
+      "username": "rishabhchopra10",
+      "text": "They should rename it to ‘figma approved name’ to start a war",
+      "created_at": "2025-04-15T21:24:44+00:00",
+      "like_count": 42,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "17889170037234979",
+      "username": "nikola_matkovic_",
+      "text": "It's capitalisam baby! What would you expect, providing actualy better product?",
+      "created_at": "2025-04-15T21:17:58+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18070316011922327",
+      "username": "madding1602",
+      "text": "Now send that letter to Google to make android rename dev mode",
+      "created_at": "2025-04-15T20:33:05+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18057660314274673",
+      "username": "mauroj_rodriguez",
+      "text": "God Mode, VIM Mode, Hacker Mode",
+      "created_at": "2025-04-15T20:29:40+00:00",
+      "like_count": 13,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "17955039644929211",
+      "username": "het_patel013",
+      "text": "Well if they trade marked dev mode I think companies can use developer mode as it’s not same or is this not how trade mark works",
+      "created_at": "2025-04-15T20:28:59+00:00",
+      "like_count": 2,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18357852193178338",
+      "username": "swol_dev",
+      "text": "Prod- Zone",
+      "created_at": "2025-04-15T20:17:27+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18083719951648593",
+      "username": "brenda.nochingues",
+      "text": "Power View",
+      "created_at": "2025-04-15T20:10:11+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "17846233833433320",
+      "username": "cacao.rush",
+      "text": "Expert mode.",
+      "created_at": "2025-04-15T20:08:29+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18027233951416325",
+      "username": "ali__dasht__bozorg",
+      "text": "Pog view",
+      "created_at": "2025-04-15T19:56:44+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "17855885724361665",
+      "username": "mouheb.manai",
+      "text": "Didn't know you are also a cuber",
+      "created_at": "2025-04-15T19:49:40+00:00",
+      "like_count": 2,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18003551846757405",
+      "username": "codingmermaid.ai",
+      "text": "It really looks like villain origin story 🥲",
+      "created_at": "2025-04-15T19:38:19+00:00",
+      "like_count": 10,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18165815527341558",
+      "username": "chinenyezeiwu",
+      "text": "excellent background music mate",
+      "created_at": "2025-04-15T19:36:49+00:00",
+      "like_count": 0,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "17968125272855221",
+      "username": "amit.sunil",
+      "text": "Developer mode",
+      "created_at": "2025-04-15T19:23:39+00:00",
+      "like_count": 12,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18092083660584214",
+      "username": "abhishek261007",
+      "text": "reminds me when apple wanted to trademark the letter 'i'",
+      "created_at": "2025-04-15T19:10:36+00:00",
+      "like_count": 214,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18404016823100107",
+      "username": "abs0l0mb",
+      "text": "Figma's onto nothing (no one will fucking care)",
+      "created_at": "2025-04-15T19:09:35+00:00",
+      "like_count": 64,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "17916032427086517",
+      "username": "palmaf",
+      "text": "Ligma mode",
+      "created_at": "2025-04-15T19:01:07+00:00",
+      "like_count": 442,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "18301661776211585",
+      "username": "arman__slh",
+      "text": "ff mode. for fuck figma mode. it will teach them a lesson 😂",
+      "created_at": "2025-04-15T18:55:28+00:00",
+      "like_count": 73,
+      "has_liked": false,
+      "replies": []
+    },
+    {
+      "pk": "17957412224923538",
+      "username": "adam.radivojevic",
+      "text": "Vibe mode",
+      "created_at": "2025-04-15T18:54:20+00:00",
+      "like_count": 50,
+      "has_liked": false,
+      "replies": []
+    }
+  ]
+}

@@ -23,8 +23,10 @@ export function UrlInputPage({ onBack, onAnalyze }: UrlInputPageProps) {
 
   const validateInstagramUrl = (url: string) => {
     const instagramReelRegex = /^https?:\/\/(www\.)?instagram\.com\/(reel|p)\/[A-Za-z0-9_-]+\/?(\?.*)?$/
-    return instagramReelRegex.test(url)
+    const linkedinPostRegex = /^https?:\/\/(www\.)?linkedin\.com\/posts\/[A-Za-z0-9_-]+\/?(\?.*)?$/
+    return instagramReelRegex.test(url) || linkedinPostRegex.test(url)
   }
+
 
   const handleUrlChange = (value: string) => {
     setUrl(value)
