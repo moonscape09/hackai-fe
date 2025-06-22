@@ -230,8 +230,8 @@ export function UrlInputPage({ onBack, onAnalyze }: UrlInputPageProps) {
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
                     <Brain className="h-6 w-6 text-blue-600" />
                   </div>
-                  <h4 className="font-medium text-gray-900 mb-1">Personality Traits</h4>
-                  <p className="text-sm text-gray-600">Big Five personality analysis of your audience</p>
+                  <h4 className="font-medium text-gray-900 mb-1">Sentiment Analysis</h4>
+                  <p className="text-sm text-gray-600">Analysis of user sentiments with content</p>
                 </div>
                 <div className="text-center">
                   <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-3">

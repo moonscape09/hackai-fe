@@ -1,6 +1,4 @@
-"use client"
-
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -30,6 +28,7 @@ import {
   Cell,
   Area,
   AreaChart,
+  Legend,
 } from "recharts"
 import {
   ArrowLeft,
@@ -55,6 +54,7 @@ import {
   Smartphone,
 } from "lucide-react"
 
+import { getComments, getPost } from "@/lib/api"
 interface ReelAnalyticsProps {
   onBack: () => void
   reelUrl: string
@@ -62,6 +62,8 @@ interface ReelAnalyticsProps {
 
 export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
   const [selectedPersona, setSelectedPersona] = useState<any>(null)
+  const [comments, setComments] = useState<any[]>([])
+  const [post, setPost] = useState<any>(null);
 
   // Mock reel data
   const reelData = {
@@ -76,6 +78,8 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
     postedDate: "2024-01-15",
     duration: "00:30",
   }
+
+  // const summaryData = 
 
   // Mock persona data
   const personaData = [
@@ -239,11 +243,87 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
     { time: "00:30", engagement: 82 },
   ]
 
-  const sentimentData = [
-    { name: "Positive", value: 78, color: "#22c55e" },
-    { name: "Neutral", value: 18, color: "#6b7280" },
-    { name: "Negative", value: 4, color: "#ef4444" },
-  ]
+  useEffect(() => {
+    const fetchComments = async () => {
+      const data = await getComments(7);
+      setComments(data);
+    };
+    fetchComments();
+  }, []);
+
+  useEffect(() => {
+    const fetchPost = async () => {
+      const data = await getPost(19);
+      setPost(data[0]);
+      console.log(data);
+    };
+    fetchPost();
+  }, []);
+  const [sentimentData, setSentimentData] = useState<
+    { name: string; value: number; color?: string }[]
+  >([]);
+
+  const [languageData, setLanguageData] = useState<
+    { name: string; value: number; color?: string }[]
+  >([]);
+
+  useEffect(() => {
+    if (!post) return;
+
+    // 1) Turn the object into [ [key, val], [key, val], … ]  
+    const entries = Object.entries(post.sentiment_distribution);
+
+    const total = entries.reduce((sum, [, value]) => sum + (value as number), 0);
+
+    // 2) Map that into the shape your chart wants
+    const data = entries.map(([key, value]) => ({
+      name:
+        key.charAt(0).toUpperCase() + key.slice(1), // "positive" → "Positive"
+      value: value as number / total * 100,
+      color:
+        key === "positive"
+          ? "#22c55e"
+          : key === "neutral"
+          ? "#6b7280"
+          : "#ef4444",
+    }));
+
+    setSentimentData(data);
+  }, [post]);
+
+    useEffect(() => {
+    if (!post) return;
+
+    // 1) Turn the object into [ [key, val], [key, val], … ]  
+    const entries = Object.entries(post.language_style_distribution);
+
+    const total = entries.reduce((sum, [, value]) => sum + (value as number), 0);
+
+    // 2) Map that into the shape your chart wants
+    const data = entries.map(([key, value]) => ({
+      name:
+        key.charAt(0).toUpperCase() + key.slice(1), // "positive" → "Positive"
+      value: value as number / total * 100,
+      color:
+        key === "casual"
+          ? "#22C55E"
+          : key === "neutral"
+          ? "#F59E0B"
+          : key === "playful"
+          ? "#8B5CF6"
+          : key === "emoji-heavy"
+          ? "#3B82F6"
+          : key === "internet-slang"
+          ? "#EF4444"
+          : "#000000"
+    }));
+
+    setLanguageData(data);
+  }, [post]);
+
+  useEffect(() => {
+    console.log(sentimentData)
+  }, [sentimentData]);
 
   const radarData = (traits: any) => [
     { subject: "Openness", A: traits.openness, fullMark: 100 },
@@ -254,7 +334,7 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
   ]
 
   const copyInsights = () => {
-    const insights = `Reel Analysis: ${reelData.views.toLocaleString()} views, ${reelData.engagementRate}% engagement rate. Top persona: ${personaData[0].name} (${personaData[0].percentage}% of audience). Key insights: High positive sentiment (78%), peak engagement at 00:25s.`
+    const insights = `Reel Analysis: ${reelData.views.toLocaleString()} views, Engagement score: ${post ? post.engagement : null}. ICP score: ${post ? post.icpScore : null}. Key insights: High positive sentiment (}}), peak engagement at TODO .`
     navigator.clipboard.writeText(insights)
   }
 
@@ -492,10 +572,6 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
               <Copy className="mr-2 h-4 w-4" />
               Copy Report
             </Button>
-            <Button variant="outline">
-              <Download className="mr-2 h-4 w-4" />
-              Export PDF
-            </Button>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon">
@@ -521,53 +597,150 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
 
       <div className="p-6 max-w-7xl mx-auto">
         {/* Reel Overview */}
-        <Card className="mb-8">
+{post && (
+  <Card className="mb-8">
+    <CardHeader>
+      <CardTitle>Reel & Post Summary</CardTitle>
+    </CardHeader>
+    <CardContent className="space-y-8">
+
+      {/* 1) Reel Metrics */}
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="text-center">
+          <Eye className="h-6 w-6 text-blue-500 mx-auto mb-2" />
+          <div className="text-2xl font-bold">{reelData.views.toLocaleString()}</div>
+          <div className="text-sm text-gray-600">Views</div>
+        </div>
+        <div className="text-center">
+          <Heart className="h-6 w-6 text-red-500 mx-auto mb-2" />
+          <div className="text-2xl font-bold">{reelData.likes.toLocaleString()}</div>
+          <div className="text-sm text-gray-600">Likes</div>
+        </div>
+        <div className="text-center">
+          <MessageSquare className="h-6 w-6 text-green-500 mx-auto mb-2" />
+          <div className="text-2xl font-bold">{reelData.comments}</div>
+          <div className="text-sm text-gray-600">Comments</div>
+        </div>
+      </div>
+
+      {/* 2) Engagement & ICP */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="flex items-center space-x-4">
+          <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center shadow-sm">
+            <Eye className="text-blue-600" size={28} />
+          </div>
+          <div>
+            <div className="text-2xl font-bold">{post.engagement}</div>
+            <div className="text-sm text-gray-500">Engagement</div>
+          </div>
+        </div>
+        <div className="flex items-center space-x-4">
+          <div className="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center shadow-sm">
+            <Target className="text-green-600" size={28} />
+          </div>
+          <div>
+            <div className="text-2xl font-bold">{post.icp}</div>
+            <div className="text-sm text-gray-500">ICP Score</div>
+          </div>
+        </div>
+        <div className="col-span-full md:col-span-2">
+          <h4 className="text-sm font-medium mb-1">ICP Reasoning</h4>
+          <p className="text-sm text-gray-700 leading-relaxed">
+            {post.icp_reasoning}
+          </p>
+        </div>
+      </div>
+
+      {/* 3) Sub-cards: Sentiment & Language */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Sentiment */}
+        <Card className="shadow-sm">
           <CardHeader>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg flex items-center justify-center">
-                  <Instagram className="h-6 w-6 text-white" />
-                </div>
-                <div>
-                  <CardTitle className="text-xl">{reelData.title}</CardTitle>
-                  <p className="text-gray-600">
-                    Posted on {reelData.postedDate} • {reelData.duration}
-                  </p>
-                </div>
-              </div>
-              <Badge className="bg-green-100 text-green-700">{reelData.engagementRate}% Engagement Rate</Badge>
-            </div>
+            <CardTitle>Sentiment Analysis</CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-              <div className="text-center">
-                <Eye className="h-6 w-6 text-blue-500 mx-auto mb-2" />
-                <div className="text-2xl font-bold text-gray-900">{reelData.views.toLocaleString()}</div>
-                <div className="text-sm text-gray-600">Views</div>
-              </div>
-              <div className="text-center">
-                <Heart className="h-6 w-6 text-red-500 mx-auto mb-2" />
-                <div className="text-2xl font-bold text-gray-900">{reelData.likes.toLocaleString()}</div>
-                <div className="text-sm text-gray-600">Likes</div>
-              </div>
-              <div className="text-center">
-                <MessageSquare className="h-6 w-6 text-green-500 mx-auto mb-2" />
-                <div className="text-2xl font-bold text-gray-900">{reelData.comments}</div>
-                <div className="text-sm text-gray-600">Comments</div>
-              </div>
-              <div className="text-center">
-                <Share2 className="h-6 w-6 text-purple-500 mx-auto mb-2" />
-                <div className="text-2xl font-bold text-gray-900">{reelData.shares}</div>
-                <div className="text-sm text-gray-600">Shares</div>
-              </div>
-              <div className="text-center">
-                <BookOpen className="h-6 w-6 text-orange-500 mx-auto mb-2" />
-                <div className="text-2xl font-bold text-gray-900">{reelData.saves}</div>
-                <div className="text-sm text-gray-600">Saves</div>
-              </div>
+          <CardContent className="flex items-center gap-4 p-4">
+            <div className="w-26 h-26">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={sentimentData}
+                    dataKey="value"
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={50}
+                    paddingAngle={0}
+                    stroke="none"
+                  >
+                    {sentimentData.map((entry, i) => (
+                      <Cell key={i} fill={entry.color!} />
+                    ))}
+                  </Pie>
+                  <Tooltip formatter={(val) => `${val}%`} />
+                </PieChart>
+              </ResponsiveContainer>
             </div>
+            <ul className="space-y-1 text-sm">
+              {sentimentData.map((s) => (
+                <li key={s.name} className="flex items-center space-x-2">
+                  <span
+                    className="w-3 h-3 rounded-full"
+                    style={{ backgroundColor: s.color }}
+                  />
+                  <span className="font-medium">{s.name}</span>
+                  <span className="text-gray-400">—</span>
+                  <span className="text-gray-600">{s.value}%</span>
+                </li>
+              ))}
+            </ul>
           </CardContent>
         </Card>
+
+        {/* Language Style */}
+        <Card className="shadow-sm">
+          <CardHeader>
+            <CardTitle>Language Style Distribution</CardTitle>
+          </CardHeader>
+          <CardContent className="flex items-center gap-4 p-4">
+            <div className="w-26 h-26">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={languageData}
+                    dataKey="value"
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={50}
+                    paddingAngle={0}
+                    stroke="none"
+                  >
+                    {languageData.map((entry, i) => (
+                      <Cell key={i} fill={entry.color!} />
+                    ))}
+                  </Pie>
+                  <Tooltip formatter={(val) => `${val}%`} />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+            <ul className="space-y-1 text-sm">
+              {languageData.map((l) => (
+                <li key={l.name} className="flex items-center space-x-2">
+                  <span
+                    className="w-3 h-3 rounded-full"
+                    style={{ backgroundColor: l.color }}
+                  />
+                  <span className="font-medium">{l.name}</span>
+                  <span className="text-gray-400">—</span>
+                  <span className="text-gray-600">{l.value}%</span>
+                </li>
+              ))}
+            </ul>
+          </CardContent>
+        </Card>
+      </div>
+
+    </CardContent>
+  </Card>
+)}
 
         <Tabs defaultValue="personas" className="space-y-6">
           <TabsList className="flex w-full space-x-4">
@@ -718,9 +891,6 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
                         dataKey="value"
                         label={({ name, value }) => `${name}: ${value}%`}
                       >
-                        {sentimentData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={entry.color} />
-                        ))}
                       </Pie>
                       <Tooltip />
                     </PieChart>
