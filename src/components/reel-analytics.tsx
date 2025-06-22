@@ -244,7 +244,7 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
 
   useEffect(() => {
     const fetchComments = async () => {
-      const data = await getComments(7);
+      const data = await getComments(63);
       setComments(data);
       setNumComments(data.length);
     };
@@ -748,9 +748,117 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
 
     </CardContent>
   </Card>
+  
 )}
 
+{post && (
+  // 4) Top Comments
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+    {/* Unreplied Comments */}
+    <Card className="shadow-sm">
+      <CardHeader>
+        <CardTitle>Top 3 Unreplied Comments</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        {comments
+          .filter((c) => c.has_author_replied === 1)
+          .slice(0, 3)
+          .map((c) => {
+            // Gradient based on ICP score (0-100): blue (low) → yellow → orange → red (high)
+            const icp = c.icp_score ?? 0
+            let gradient = ""
+            if (icp >= 8.0) {
+              gradient = "linear-gradient(90deg, #f59e0b 0%, #ef4444 100%)" // orange to red (fire)
+            } else if (icp >= 6.0) {
+              gradient = "linear-gradient(90deg, #fde68a 0%, #f59e0b 100%)" // yellow to orange
+            } else if (icp >= 4.0) {
+              gradient = "linear-gradient(90deg, #3b82f6 0%, #fde68a 100%)" // blue to yellow
+            } else {
+              gradient = "linear-gradient(90deg, #0ea5e9 0%, #3b82f6 100%)" // cyan to blue (cold)
+            }
+            return (
+              <div
+                key={c.id}
+                className="space-y-1 p-4 rounded-lg border border-gray-100 bg-gray-50 shadow-sm break-words"
+                style={{ wordBreak: "break-word", overflowWrap: "break-word" }}
+              >
+                <div className="flex items-center gap-2 mb-1">
+                  <Badge
+                    className="px-2 py-1 rounded-full text-xs font-semibold"
+                    style={{
+                      background: gradient,
+                      color: "#fff",
+                    }}
+                  >
+                    ICP: {c.icp_score}
+                  </Badge>
+                </div>
+                <p
+                  className="text-sm text-gray-700 italic break-words"
+                  style={{ wordBreak: "break-word", overflowWrap: "break-word" }}
+                >
+                  "{c.comment}"
+                </p>
+              </div>
+            )
+          })}
+        {comments.filter((c) => c.has_author_replied === 1).length === 0 && (
+          <p className="text-sm text-gray-500">No unreplied comments found.</p>
+        )}
+      </CardContent>
+    </Card>
 
+    {/* Top Comments Overall */}
+    <Card className="shadow-sm">
+      <CardHeader>
+        <CardTitle>Top 3 Comments</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        {comments.slice(0, 3).map((c) => {
+          const icp = c.icp_score ?? 0
+          let gradient = ""
+          if (icp >= 8.0) {
+            gradient = "linear-gradient(90deg, #f59e0b 0%, #ef4444 100%)"
+          } else if (icp >= 6.0) {
+            gradient = "linear-gradient(90deg, #fde68a 0%, #f59e0b 100%)"
+          } else if (icp >= 4.0) {
+            gradient = "linear-gradient(90deg, #3b82f6 0%, #fde68a 100%)"
+          } else {
+            gradient = "linear-gradient(90deg, #0ea5e9 0%, #3b82f6 100%)"
+          }
+          return (
+            <div
+              key={c.id}
+              className="space-y-1 p-4 rounded-lg border border-gray-100 bg-gray-50 shadow-sm break-words"
+              style={{ wordBreak: "break-word", overflowWrap: "break-word" }}
+            >
+              <div className="flex items-center gap-2 mb-1">
+                <Badge
+                  className="px-2 py-1 rounded-full text-xs font-semibold"
+                  style={{
+                    background: gradient,
+                    color: "#fff",
+                  }}
+                >
+                  ICP: {c.icp_score}
+                </Badge>
+              </div>
+              <p
+                className="text-sm text-gray-700 italic break-words"
+                style={{ wordBreak: "break-word", overflowWrap: "break-word" }}
+              >
+                "{c.comment}"
+              </p>
+            </div>
+          )
+        })}
+        {comments.length === 0 && (
+          <p className="text-sm text-gray-500">No comments available.</p>
+        )}
+      </CardContent>
+    </Card>
+  </div>
+)}
         <Tabs defaultValue="personas" className="space-y-6">
           {/* <TabsList className="flex w-full space-x-4"> */}
             {/* <TabsTrigger value="personas">Fan Personas</TabsTrigger> */}

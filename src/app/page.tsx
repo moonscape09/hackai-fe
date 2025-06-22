@@ -5,7 +5,7 @@ import { LandingPage } from "@/components/landing-page"
 import { UrlInputPage } from "@/components/url-input-page"
 import { ReelAnalytics } from "@/components/reel-analytics"
 
-type PageState = "landing" | "url-input" | "analytics"
+type PageState = "landing" | "url-input" | "analytics" | "form"
 
 export default function Page() {
   const [currentPage, setCurrentPage] = useState<PageState>("landing")
@@ -17,6 +17,9 @@ export default function Page() {
 
   const handleBackToLanding = () => {
     setCurrentPage("landing")
+  }
+  const handleGoToForm = () => {
+    setCurrentPage("form")
   }
 
   const handleAnalyze = (url: string) => {
