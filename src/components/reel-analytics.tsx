@@ -28,17 +28,14 @@ import {
   Cell,
   Area,
   AreaChart,
-  Legend,
 } from "recharts"
 import {
   ArrowLeft,
   Heart,
   MessageSquare,
-  Share2,
   Eye,
   Clock,
   Target,
-  Download,
   Copy,
   User,
   Settings,
