@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { getComments } from "@/lib/api";
 import {
   ArrowRight,
   Users,
@@ -19,6 +20,7 @@ import {
   Brain,
   Sparkles,
 } from "lucide-react"
+import { useEffect } from "react";
 
 interface LandingPageProps {
   onGetStarted: () => void
@@ -76,6 +78,13 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
       icon: Sparkles,
     },
   ]
+  useEffect(() => {
+    const fetchComments = async () => {
+      const data = await getComments(30);
+      console.log(data);
+    };
+    fetchComments();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50">

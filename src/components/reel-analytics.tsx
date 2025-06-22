@@ -61,6 +61,7 @@ interface ReelAnalyticsProps {
 export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
   const [selectedPersona, setSelectedPersona] = useState<any>(null)
   const [comments, setComments] = useState<any[]>([])
+  const [numComments, setNumComments] = useState(0)
   const [post, setPost] = useState<any>(null);
 
   // Mock reel data
@@ -77,7 +78,7 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
     duration: "00:30",
   }
 
-  // const summaryData = 
+  // const summaryData =
 
   // Mock persona data
   const personaData = [
@@ -244,7 +245,8 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
   useEffect(() => {
     const fetchComments = async () => {
       const data = await getComments(7);
-      setComments(data.length);
+      setComments(data);
+      setNumComments(data.length);
     };
     fetchComments();
   }, []);
@@ -267,7 +269,7 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
   useEffect(() => {
     if (!post) return;
 
-    // 1) Turn the object into [ [key, val], [key, val], … ]  
+    // 1) Turn the object into [ [key, val], [key, val], … ]
     const entries = Object.entries(post.sentiment_distribution);
 
     const total = entries.reduce((sum, [, value]) => sum + (value as number), 0);
@@ -291,7 +293,7 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
     useEffect(() => {
     if (!post) return;
 
-    // 1) Turn the object into [ [key, val], [key, val], … ]  
+    // 1) Turn the object into [ [key, val], [key, val], … ]
     const entries = Object.entries(post.language_style_distribution);
 
     const total = entries.reduce((sum, [, value]) => sum + (value as number), 0);
@@ -624,7 +626,7 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
         </div>
         <div className="text-center">
           <MessageSquare className="h-6 w-6 text-green-500 mx-auto mb-2" />
-          <div className="text-2xl font-bold">{comments}</div>
+          <div className="text-2xl font-bold">{numComments}</div>
           <div className="text-sm text-gray-600">Comments</div>
         </div>
       </div>
@@ -747,6 +749,7 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
     </CardContent>
   </Card>
 )}
+
 
         <Tabs defaultValue="personas" className="space-y-6">
           {/* <TabsList className="flex w-full space-x-4"> */}
