@@ -749,14 +749,14 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
 )}
 
         <Tabs defaultValue="personas" className="space-y-6">
-          <TabsList className="flex w-full space-x-4">
-            <TabsTrigger value="personas">Fan Personas</TabsTrigger>
-            <TabsTrigger value="behavioural">Behavioural</TabsTrigger>
-            <TabsTrigger value="engagement">Engagement</TabsTrigger>
-            <TabsTrigger value="sentiment">Sentiment</TabsTrigger>
-            <TabsTrigger value="language">Language</TabsTrigger>
-          </TabsList>
-
+          {/* <TabsList className="flex w-full space-x-4"> */}
+            {/* <TabsTrigger value="personas">Fan Personas</TabsTrigger> */}
+            {/* <TabsTrigger value="behavioural">Behavioural</TabsTrigger> */}
+            {/* <TabsTrigger value="engagement">Engagement</TabsTrigger> */}
+            {/* <TabsTrigger value="sentiment">Sentiment</TabsTrigger> */}
+            {/* <TabsTrigger value="language">Language</TabsTrigger> */}
+          {/* </TabsList> */}
+          <strong> Mock Personas:</strong>
           <TabsContent value="personas" className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {personaData.map((persona) => (
