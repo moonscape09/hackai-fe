@@ -7,7 +7,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Progress } from "@/components/ui/progress"
 import { ArrowLeft, Instagram, Linkedin, Link, CheckCircle, AlertCircle, Loader2, Users, Zap, Brain } from "lucide-react"
-// import { postReel } from "@/lib/api";
+import { AudienceForm } from "./audience-form";
+import { postReel } from "@/lib/api";
 
 interface UrlInputPageProps {
   onBack: () => void
@@ -42,7 +43,7 @@ export function UrlInputPage({ onBack, onAnalyze }: UrlInputPageProps) {
     setIsValidating(true)
 
     // Simulate validation delay
-    // await postReel(url);
+    await postReel(url);
 
     if (!validateInstagramUrl(url)) {
       setValidationError("Please enter a valid URL (e.g., https://instagram.com/reel/ABC123)")

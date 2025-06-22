@@ -2,17 +2,19 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
+const NEW_API_URL = process.env.API_URL;
+
 const postReel = async (reelURL) => {
     try {
-        const response = await fetch(`${API_URL}/summary`, {
+        const response = await fetch(`https://hackai-main-7vjska.laravel.cloud/linkedin`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'api-key': API_KEY,
+                // 'api-key': API_KEY,
             },
-            body: JSON.stringify({ reelURL: reelURL }),
+            // body: JSON.stringify({ reelURL: reelURL }),
         });
-    
+        console.log(await response.json());
         if (!response.ok) {
             throw new Error(`Error: ${response.statusText}`);
         }
