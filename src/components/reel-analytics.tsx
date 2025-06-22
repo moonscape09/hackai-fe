@@ -302,7 +302,7 @@ export function ReelAnalytics({ onBack, reelUrl }: ReelAnalyticsProps) {
     const data = entries.map(([key, value]) => ({
       name:
         key.charAt(0).toUpperCase() + key.slice(1), // "positive" → "Positive"
-      value: value as number / total * 100,
+      value: Math.round((value as number / total) * 100),
       color:
         key === "casual"
           ? "#22C55E"
